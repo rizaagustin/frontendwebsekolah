@@ -1,0 +1,97 @@
+* {
+    font-family: "Poppins", sans-serif;
+}
+
+.banner img {
+    height: 500px;
+    width: auto;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+}
+
+nav {
+    color: black;
+    background-color: lightgray;
+}
+
+.berita .card img {
+    width: auto;
+    height: 250px;
+}
+
+footer {
+    min-height: 34vh;
+    background-color: #15181f;
+    /* margin-top: 150px; */
+    /* padding: 60px; */
+}
+
+.copyright {
+    color: white;
+}
+
+#foto img {
+    width: 200px;
+    /* Ubah ukuran sesuai kebutuhan */
+    height: 200px;
+    /* Ukuran yang sama untuk lebar dan tinggi */
+    object-fit: cover;
+    object-position: center;
+}
+
+#halaman_berita {
+    min-height: 600px;
+    margin-top: 10px;
+    padding-top: 50px;
+}
+
+#halaman_agenda {
+    min-height: 600px;
+    margin-top: 10px;
+    padding-top: 50px;
+}
+
+#halaman_detail_agenda {
+    min-height: 600px;
+    margin-top: 10px;
+    padding-top: 50px;
+}
+
+.text-blue {
+    color: #244b9c;
+}
+
+footer {
+    background-color: #244b9c;
+}
+
+nav {
+    background-color: #244b9c;
+    color: white;
+}
+
+.blue-bottom-border {
+    border-bottom: 0.5px solid #244b9c;
+}
+
+.blue-icon {
+    color: #244b9c;
+}
+
+.scrolling-active {
+    /* background-color: #0d6efd; */
+    padding: 15px 0 15px 0;
+    --bs-navbar-color: black;
+}
+
+.navbar {
+    background-color: #0d6efd;
+    --bs-navbar-color: white;
+}
+
+.navbar a:hover {
+    color: white;
+    background-color: rgb(63, 59, 59);
+    cursor: pointer;
+}
