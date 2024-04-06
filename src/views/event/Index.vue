@@ -72,7 +72,7 @@ export default {
     let nextPage = ref(0);
 
     const fetchDataEvents = () => {
-      axios.get("http://rizaags.my.id:89/api/event").then((response) => {
+      axios.get("/event").then((response) => {
         events.value = response.data.data.data;
 
         if (response.data.data.current_page < response.data.data.last_page) {
@@ -86,20 +86,18 @@ export default {
     };
 
     const loadMore = () => {
-      axios
-        .get(`http:/rizaags.my.id:89/api/event?page${nextPage.value}`)
-        .then((response) => {
-          if (response.data.data.current_page < response.data.data.last_page) {
-            moreExists = true;
-            nextPage = response.data.data.current_page + 1;
-          } else {
-            moreExists = false;
-          }
+      axios.get(`/event?page${nextPage.value}`).then((response) => {
+        if (response.data.data.current_page < response.data.data.last_page) {
+          moreExists = true;
+          nextPage = response.data.data.current_page + 1;
+        } else {
+          moreExists = false;
+        }
 
-          response.data.data.data.forEach((data) => {
-            events.value.push(data);
-          });
+        response.data.data.data.forEach((data) => {
+          events.value.push(data);
         });
+      });
     };
 
     //run hook on Mounted

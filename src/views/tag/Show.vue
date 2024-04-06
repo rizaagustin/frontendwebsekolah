@@ -72,25 +72,21 @@ export default {
     const tagInfo = ref({});
 
     const fetchDataPost = () => {
-      axios
-        .get(`http://rizaags.my.id:89/api/tag/${route.params.slug}`)
-        .then((response) => {
-          posts.value = response.data.data.data;
-          tagInfo.value = response.data.response;
-          if (response.data.data.current_page < response.data.data.last_page) {
-            moreExists.value = true;
-            nextPage.value = response.data.data.current_page + 1;
-          } else {
-            moreExists.value = false;
-          }
-        });
+      axios.get(`/tag/${route.params.slug}`).then((response) => {
+        posts.value = response.data.data.data;
+        tagInfo.value = response.data.response;
+        if (response.data.data.current_page < response.data.data.last_page) {
+          moreExists.value = true;
+          nextPage.value = response.data.data.current_page + 1;
+        } else {
+          moreExists.value = false;
+        }
+      });
     };
 
     const loadMore = () => {
       axios
-        .get(
-          `http://rizaags.my.id:89/api/tag/${route.params.slug}?page=${nextPage.value}`
-        )
+        .get(`/tag/${route.params.slug}?page=${nextPage.value}`)
         .then((response) => {
           if (response.data.data.current_page < response.data.data.last_page) {
             moreExists.value = true;

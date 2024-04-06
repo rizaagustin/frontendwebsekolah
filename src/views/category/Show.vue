@@ -71,32 +71,28 @@ export default {
     const route = useRoute();
 
     const fetchDataPost = () => {
-      axios
-        .get(`http://rizaags.my.id:89/api/category/${route.params.slug}`)
-        .then((response) => {
-          categoryInfo.value = response.data.response;
+      axios.get(`/category/${route.params.slug}`).then((response) => {
+        categoryInfo.value = response.data.response;
 
-          posts.value = response.data.data.data;
-          console.log(response.data.data.data);
-          //check if response has next page
-          if (response.data.data.current_page < response.data.data.last_page) {
-            //set state moreExists to true
-            moreExists.value = true;
+        posts.value = response.data.data.data;
+        console.log(response.data.data.data);
+        //check if response has next page
+        if (response.data.data.current_page < response.data.data.last_page) {
+          //set state moreExists to true
+          moreExists.value = true;
 
-            //increment nextPage
-            nextPage.value = response.data.data.current_page + 1;
-          } else {
-            //set state moreExists to false
-            moreExists.value = false;
-          }
-        });
+          //increment nextPage
+          nextPage.value = response.data.data.current_page + 1;
+        } else {
+          //set state moreExists to false
+          moreExists.value = false;
+        }
+      });
     };
 
     const loadMore = () => {
       axios
-        .get(
-          `http://rizaags.my.id:89/api/category/${route.params.slug}?page=${nextPage.value}`
-        )
+        .get(`/category/${route.params.slug}?page=${nextPage.value}`)
         .then((response) => {
           if (response.data.data.current_page < response.data.data.last_page) {
             //set state moreExists to true

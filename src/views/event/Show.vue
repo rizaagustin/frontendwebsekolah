@@ -123,17 +123,15 @@ export default {
     const route = useRoute();
 
     onMounted(() => {
-      axios
-        .get(`http://rizaags.my.id:89/api/event/${route.params.slug}`)
-        .then((response) => {
-          event.value = response.data.data;
-        });
+      axios.get(`/event/${route.params.slug}`).then((response) => {
+        event.value = response.data.data;
+      });
 
-      axios.get("http://rizaags.my.id:89/api/event").then((response) => {
+      axios.get("/event").then((response) => {
         events.value = response.data.data.data;
       });
 
-      axios.get("http://rizaags.my.id:89/api/category").then((response) => {
+      axios.get("/category").then((response) => {
         categories.value = response.data.data.data;
       });
     });

@@ -58,7 +58,7 @@ export default {
     const tags = ref([]);
     onMounted(() => {
       axios
-        .get("http://rizaags.my.id:89/api/tag")
+        .get("/tag")
         .then((response) => {
           tags.value = response.data.data.data;
         })

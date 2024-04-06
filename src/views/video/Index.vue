@@ -51,7 +51,7 @@ export default {
     const nextPage = ref(0);
 
     const fetchDataVideo = () => {
-      axios.get("http://rizaags.my.id:89/api/video").then((response) => {
+      axios.get("/video").then((response) => {
         videos.value = response.data.data.data;
         if (response.data.data.current_page < response.data.data.last_page) {
           moreExists.value = true;
@@ -63,20 +63,18 @@ export default {
     };
 
     const loadMore = () => {
-      axios
-        .get(`http://rizaags.my.id:89/api/video?page=${nextPage.value}`)
-        .then((response) => {
-          if (response.data.data.current_page < response.data.data.last_page) {
-            moreExists.value = true;
-            nextPage.value = response.data.data.current_page + 1;
-          } else {
-            moreExists.value = false;
-          }
-          // //assign response to state posts
-          response.data.data.data.forEach((data) => {
-            videos.value.push(data);
-          });
+      axios.get(`/video?page=${nextPage.value}`).then((response) => {
+        if (response.data.data.current_page < response.data.data.last_page) {
+          moreExists.value = true;
+          nextPage.value = response.data.data.current_page + 1;
+        } else {
+          moreExists.value = false;
+        }
+        // //assign response to state posts
+        response.data.data.data.forEach((data) => {
+          videos.value.push(data);
         });
+      });
     };
 
     onMounted(() => {

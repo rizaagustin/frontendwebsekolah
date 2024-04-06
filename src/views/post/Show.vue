@@ -112,19 +112,15 @@ export default {
     const categories_loader = ref(2);
 
     onMounted(() => {
-      axios
-        .get(`http://rizaags.my.id:89/api/post/${route.params.slug}`)
-        .then((response) => {
-          post.value = response.data.data;
-        });
+      axios.get(`/post/${route.params.slug}`).then((response) => {
+        post.value = response.data.data;
+      });
 
-      axios
-        .get("http://rizaags.my.id:89/api/homepage/event")
-        .then((response) => {
-          events.value = response.data.data;
-        });
+      axios.get("/homepage/event").then((response) => {
+        events.value = response.data.data;
+      });
 
-      axios.get("http://rizaags.my.id:89/api/category").then((response) => {
+      axios.get("/category").then((response) => {
         categories.value = response.data.data.data;
       });
     });

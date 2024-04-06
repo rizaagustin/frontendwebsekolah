@@ -198,6 +198,7 @@ import {
 } from "vue-content-loader";
 
 import axios from "axios";
+
 import { ref, onMounted } from "vue";
 
 import Header from "../../components/Header.vue";
@@ -232,35 +233,27 @@ export default {
 
     onMounted(() => {
       //get posts
-      axios
-        .get("http://rizaags.my.id:89/api/homepage/post")
-        .then((response) => {
-          posts.value = response.data.data;
-        });
+      axios.get("/homepage/post").then((response) => {
+        posts.value = response.data.data;
+      });
 
       //get events
-      axios
-        .get("http://rizaags.my.id:89/api/homepage/event")
-        .then((response) => {
-          events.value = response.data.data;
-        });
+      axios.get("/homepage/event").then((response) => {
+        events.value = response.data.data;
+      });
 
       //get photos
-      axios
-        .get("http://rizaags.my.id:89/api/homepage/photo")
-        .then((response) => {
-          photos.value = response.data.data;
-        });
+      axios.get("/homepage/photo").then((response) => {
+        photos.value = response.data.data;
+      });
 
       // video
-      axios
-        .get("http://rizaags.my.id:89/api/homepage/video")
-        .then((response) => {
-          videos.value = response.data.data;
-        });
+      axios.get("/homepage/video").then((response) => {
+        videos.value = response.data.data;
+      });
 
       // category
-      axios.get("http://rizaags.my.id:89/api/category").then((response) => {
+      axios.get("/category").then((response) => {
         categories.value = response.data.data.data;
       });
     });

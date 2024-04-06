@@ -86,7 +86,7 @@ export default {
 
     //define method
     const fetchDataPosts = () => {
-      axios.get("http://rizaags.my.id:89/api/post").then((response) => {
+      axios.get("/post").then((response) => {
         //assign response to state posts
         posts.value = response.data.data.data;
 
@@ -106,27 +106,25 @@ export default {
 
     //define method loadMore
     const loadMore = () => {
-      axios
-        .get(`http://rizaags.my.id:89/api/post?page=${nextPage.value}`)
-        .then((response) => {
-          console.log(response.data.data);
-          //check if response has next page
-          if (response.data.data.current_page < response.data.data.last_page) {
-            //set state moreExists to true
-            moreExists.value = true;
+      axios.get(`/post?page=${nextPage.value}`).then((response) => {
+        console.log(response.data.data);
+        //check if response has next page
+        if (response.data.data.current_page < response.data.data.last_page) {
+          //set state moreExists to true
+          moreExists.value = true;
 
-            //increment nextPage
-            nextPage.value = response.data.data.current_page + 1;
-          } else {
-            //set state moreExists to false
-            moreExists.value = false;
-          }
+          //increment nextPage
+          nextPage.value = response.data.data.current_page + 1;
+        } else {
+          //set state moreExists to false
+          moreExists.value = false;
+        }
 
-          // //assign response to state posts
-          response.data.data.data.forEach((data) => {
-            posts.value.push(data);
-          });
+        // //assign response to state posts
+        response.data.data.data.forEach((data) => {
+          posts.value.push(data);
         });
+      });
     };
 
     //run hook onMounted

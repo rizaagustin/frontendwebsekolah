@@ -88,7 +88,7 @@ export default {
 
     onMounted(() => {
       axios
-        .get("http://rizaags.my.id:89/api/slider")
+        .get("/slider")
         .then((response) => {
           sliders.value = response.data.data.data;
         })
