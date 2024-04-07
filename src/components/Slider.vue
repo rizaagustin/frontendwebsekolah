@@ -17,11 +17,7 @@
                   :class="{ active: id == 0 }"
                   :key="slider.id"
                 >
-                  <img
-                    :src="slider.image"
-                    class="d-block w-100 img-fluid"
-                    alt=""
-                  />
+                  <img :src="slider.image" class="d-block w-100" alt="" />
                 </div>
               </div>
             </div>

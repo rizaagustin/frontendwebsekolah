@@ -111,6 +111,7 @@ export default {
       () => {
         //fetchDataPostsByCategory
         fetchDataPost();
+        console.log(route.params.slug);
       }
     );
 

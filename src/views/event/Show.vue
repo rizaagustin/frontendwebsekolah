@@ -101,7 +101,7 @@
 <script>
 import axios from "axios";
 import { FacebookLoader } from "vue-content-loader";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 
 import Header from "../../components/Header.vue";
 import Footer from "../../components/Footer.vue";
@@ -122,7 +122,7 @@ export default {
 
     const route = useRoute();
 
-    onMounted(() => {
+    const fetchDataPost = () => {
       axios.get(`/event/${route.params.slug}`).then((response) => {
         event.value = response.data.data;
       });
@@ -134,7 +134,18 @@ export default {
       axios.get("/category").then((response) => {
         categories.value = response.data.data.data;
       });
+    };
+
+    onMounted(() => {
+      fetchDataPost();
     });
+
+    watch(
+      () => route.params.slug,
+      () => {
+        fetchDataPost();
+      }
+    );
 
     return {
       event,
